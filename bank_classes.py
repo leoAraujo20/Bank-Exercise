@@ -12,7 +12,7 @@ class Account(ABC):
 
     @abstractmethod
     def withdraw_money():
-        raise NotImplementedError('Implement this class according to the type of bank')
+        raise NotImplementedError('Implement this class according to the type of account!')
 
 class CheckingAccount(Account):
 
@@ -35,14 +35,16 @@ class Person():
         self._name = name
     
 class Client(Person):
-    pass
+    def criar_conta(self, conta:Account):
+        self.conta = conta
 
 if __name__ == '__main__':
-    person1 = Person('João',25)
-    print(person1.name)
-    person1.name = 'Felipe'
-    print(person1.name)
-
+    client1 = Client('Joao', 25 )
+    account1 = client1.criar_conta(CheckingAccount('001', '12345-6', 5000))
+    client1.conta.withdraw_money(100)
+    print(client1.conta.balance)
     
+
+  
 
         
